@@ -18,7 +18,7 @@ export class IndexingError extends Error {
       return `${slash(this.importPaths[0])}`;
     }
 
-    return `${this.importPaths.map(slash).join(',')}`;
+    return `${this.importPaths.map((p) => slash(p)).join(',')}`;
   }
 
   toString() {
