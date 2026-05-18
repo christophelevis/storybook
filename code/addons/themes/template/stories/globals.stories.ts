@@ -16,7 +16,7 @@ const addStyleSheetDecorator = (storyFn: any) => {
     cleanup();
 
     const sheet = globalThis.document.createElement('style');
-    sheet.setAttribute('data-theme-css', '');
+    sheet.dataset.themeCss = '';
     sheet.textContent = `
       [data-theme="theme-a"], .theme-a {
         background-color: white;
