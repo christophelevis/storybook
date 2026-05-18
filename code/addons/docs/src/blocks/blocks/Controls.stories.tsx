@@ -129,7 +129,7 @@ export const SubcomponentsIncludeProp: Story = {
     const canvas = within(canvasElement);
     const { subcomponentBTab } = await findSubcomponentTabs(canvas, step);
     if (subcomponentBTab) {
-      await (subcomponentBTab as HTMLElement & { click: () => Promise<void> }).click();
+      subcomponentBTab.click();
     }
   },
 };

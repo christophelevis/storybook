@@ -52,7 +52,7 @@ export const renderHTML = async (
       REFS: JSON.stringify(await refs, null, 2),
       LOGLEVEL: JSON.stringify(await logLevel, null, 2),
       DOCS_OPTIONS: JSON.stringify(await docsOptions, null, 2),
-      CONFIG_TYPE: JSON.stringify(await configType, null, 2),
+      CONFIG_TYPE: JSON.stringify(configType, null, 2),
       // These two need to be double stringified because the UI expects a string
       VERSIONCHECK: JSON.stringify(JSON.stringify(versionCheck), null, 2),
       PREVIEW_URL: JSON.stringify(previewUrl, null, 2), // global preview URL
