@@ -197,7 +197,7 @@ const BenchmarkHarness = ({ blocks }: { blocks: number }) => {
         countRef={countRef}
         resultRef={resultRef}
         onUpdate={updateSnippets}
-        onRunBenchmark={() => void runBenchmark()}
+        onRunBenchmark={() => { runBenchmark(); }}
       />
       <SourceContext.Provider value={{ sources }}>
         <StaticSourceList blocks={blocks} onRender={handleRender} />

@@ -133,9 +133,7 @@ class MockGitDiffProvider extends GitDiffProvider {
 
   readonly getRepoRootMock = vi.fn(async (): Promise<string> => '/repo');
 
-  readonly onGitStateChangeMock = vi.fn<(callback: () => void) => void>((callback) => {
-    void callback;
-  });
+  readonly onGitStateChangeMock = vi.fn<(callback: () => void) => void>((_callback) => {});
   readonly isWorkingTreeCleanMock = vi.fn(async (): Promise<boolean> => true);
   readonly getHeadCommitMock = vi.fn(async (): Promise<string> => 'mock-sha');
   readonly disposeMock = vi.fn(() => undefined);
