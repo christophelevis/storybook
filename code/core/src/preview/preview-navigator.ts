@@ -32,7 +32,7 @@ export async function maybeSetupPreviewNavigator() {
     if (firstEntry) {
       url.searchParams.set('id', firstEntry.id);
       url.searchParams.set('viewMode', firstEntry.type);
-      window.location.href = url.toString();
+      window.location.href = `${url.pathname}${url.search}${url.hash}`;
     }
     /*
       We do a hard navigation above, stopping all code execution, so the return here is never reached.
