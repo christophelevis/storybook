@@ -336,24 +336,32 @@ const WithToolTipState = ({
     // Find all iframes on the screen and bind to clicks inside them (waiting until the iframe is ready)
     const iframes: HTMLIFrameElement[] = Array.from(document.getElementsByTagName('iframe'));
     const unbinders: (() => void)[] = [];
+    const createIframeUnbinder = (iframe: HTMLIFrameElement): (() => void) | null => {
+      try {
+        // @ts-expect-error (non strict)
+        if (iframe.contentWindow.document) {
+          // @ts-expect-error (non strict)
+          iframe.contentWindow.document.addEventListener('click', hide);
+          return () => {
+            try {
+              // @ts-expect-error (non strict)
+              iframe.contentWindow.document.removeEventListener('click', hide);
+            } catch (e) {
+              // logger.debug('Removing a click listener from iframe failed: ', e);
+            }
+          };
+        }
+      } catch (e) {
+        // logger.debug('Adding a click listener to iframe failed: ', e);
+      }
+      return null;
+    };
+
     iframes.forEach((iframe) => {
       const bind = () => {
-        try {
-          // @ts-expect-error (non strict)
-          if (iframe.contentWindow.document) {
-            // @ts-expect-error (non strict)
-            iframe.contentWindow.document.addEventListener('click', hide);
-            unbinders.push(() => {
-              try {
-                // @ts-expect-error (non strict)
-                iframe.contentWindow.document.removeEventListener('click', hide);
-              } catch (e) {
-                // logger.debug('Removing a click listener from iframe failed: ', e);
-              }
-            });
-          }
-        } catch (e) {
-          // logger.debug('Adding a click listener to iframe failed: ', e);
+        const unbinder = createIframeUnbinder(iframe);
+        if (unbinder) {
+          unbinders.push(unbinder);
         }
       };
 
