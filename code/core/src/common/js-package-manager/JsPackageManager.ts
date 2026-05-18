@@ -193,7 +193,9 @@ export abstract class JsPackageManager {
     storybookVersion: string;
     nonInteractive: boolean;
     installContext: 'create' | 'upgrade';
-  }): Promise<void> {}
+  }): Promise<void> {
+    // Default no-op implementation; subclasses may override to perform pre-install checks
+  }
 
   async dedupeDependencies(options?: { force?: boolean }) {
     await prompt.executeTask(
