@@ -92,7 +92,7 @@ export async function syncPreviewAddonsWithMainConfig(
 
   if (syncedAddons.length > 0) {
     logger.log(
-      `Synchronizing addons from main config in ${picocolors.cyan(previewConfig.fileName)}:\n${syncedAddons.map(picocolors.magenta).join(', ')}`
+      `Synchronizing addons from main config in ${picocolors.cyan(previewConfig.fileName)}:\n${syncedAddons.map((addon) => picocolors.magenta(addon)).join(', ')}`
     );
   }
 
