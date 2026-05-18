@@ -26,7 +26,7 @@ export class ZoomIFrame extends Component<IZoomIFrameProps> {
     }
 
     if (active !== nextProps.active) {
-      this.iframe.setAttribute('data-is-storybook', nextProps.active ? 'true' : 'false');
+      this.iframe.dataset.isStorybook = nextProps.active ? 'true' : 'false';
     }
 
     // this component renders an iframe, which gets updates via post-messages
